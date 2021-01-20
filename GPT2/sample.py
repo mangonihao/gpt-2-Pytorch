@@ -3,9 +3,11 @@
     Original Paper and repository here : https://github.com/openai/gpt-2
     GPT2 Pytorch Model : https://github.com/huggingface/pytorch-pretrained-BERT
 '''
+
 import torch
 import torch.nn.functional as F
 from tqdm import trange
+
 
 def top_k_logits(logits, k):
     if k == 0:
@@ -13,6 +15,7 @@ def top_k_logits(logits, k):
     values, _ = torch.topk(logits, k)
     min_values = values[:, -1]
     return torch.where(logits < min_values, torch.ones_like(logits, dtype=logits.dtype) * -1e10, logits)
+
 
 def sample_sequence(model, length, start_token=None, batch_size=None, context=None, temperature=1, top_k=0, device='cuda', sample=True):
     if start_token is None:
@@ -35,4 +38,5 @@ def sample_sequence(model, length, start_token=None, batch_size=None, context=No
             else:
                 _, prev = torch.topk(log_probs, k=1, dim=-1)
             output = torch.cat((output, prev), dim=1)
+
     return output

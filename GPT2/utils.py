@@ -3,9 +3,11 @@
     Original Paper and repository here : https://github.com/openai/gpt-2
     GPT2 Pytorch Model : https://github.com/huggingface/pytorch-pretrained-BERT
 '''
+
 import logging
 
 logger = logging.getLogger(__name__)
+
 
 def load_weight(model, state_dict):
     old_keys = []

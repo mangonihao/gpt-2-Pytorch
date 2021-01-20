@@ -5,6 +5,7 @@ import json
 import regex as re
 from functools import lru_cache
 
+
 @lru_cache()
 def bytes_to_unicode():
     """
@@ -27,6 +28,7 @@ def bytes_to_unicode():
     cs = [chr(n) for n in cs]
     return dict(zip(bs, cs))
 
+
 def get_pairs(word):
     """Return set of symbol pairs in a word.
     Word is represented as tuple of symbols (symbols being variable-length strings).
@@ -37,6 +39,7 @@ def get_pairs(word):
         pairs.add((prev_char, char))
         prev_char = char
     return pairs
+
 
 class Encoder:
     def __init__(self, encoder, bpe_merges, errors='replace'):
@@ -103,6 +106,7 @@ class Encoder:
         text = ''.join([self.decoder[token] for token in tokens])
         text = bytearray([self.byte_decoder[c] for c in text]).decode('utf-8', errors=self.errors)
         return text
+
 
 def get_encoder():
     with open('./GPT2/encoder.json', 'r') as f:

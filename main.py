@@ -3,6 +3,7 @@
     Original Paper and repository here : https://github.com/openai/gpt-2
     GPT2 Pytorch Model : https://github.com/huggingface/pytorch-pretrained-BERT
 '''
+
 import os
 import sys
 import torch
@@ -14,6 +15,7 @@ from GPT2.utils import load_weight
 from GPT2.config import GPT2Config
 from GPT2.sample import sample_sequence
 from GPT2.encoder import get_encoder
+
 
 def text_generator(state_dict):
     parser = argparse.ArgumentParser()
@@ -72,6 +74,7 @@ def text_generator(state_dict):
             if args.quiet is False:
                 print("=" * 40 + " SAMPLE " + str(generated) + " " + "=" * 40)
             print(text)
+
 
 if __name__ == '__main__':
     if os.path.exists('gpt2-pytorch_model.bin'):
